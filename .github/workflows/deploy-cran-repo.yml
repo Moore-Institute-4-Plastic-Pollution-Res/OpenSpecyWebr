@@ -1,11 +1,11 @@
-# Workflow derived from https://github.com/r-wasm/actions/tree/v1/examples
+# Workflow derived from https://github.com/r-wasm/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     # Only build on main or master branch
     branches: [main, master]
   # Or when triggered manually
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 name: Build and deploy wasm R package repository
 
