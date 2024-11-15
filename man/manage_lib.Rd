@@ -2,26 +2,37 @@
 % Please edit documentation in R/manage_lib.R
 \name{check_lib}
 \alias{check_lib}
+\alias{get_lib}
 \alias{load_lib}
 \alias{rm_lib}
 \title{Manage spectral libraries}
 \usage{
 check_lib(
-  type = c("derivative", "nobaseline", "raw", "mediod", "model"),
+  type = c("derivative", "nobaseline", "raw", "medoid_derivative", "medoid_nobaseline",
+    "model_derivative", "model_nobaseline"),
   path = "system",
   condition = "warning"
+)
+
+get_lib(
+  type = c("derivative", "nobaseline", "raw", "medoid_derivative", "medoid_nobaseline",
+    "model_derivative", "model_nobaseline"),
+  path = "system",
+  revision = NULL,
+  ...
 )
 
 load_lib(type, path = "system")
 
 rm_lib(
-  type = c("derivative", "nobaseline", "raw", "mediod", "model"),
+  type = c("derivative", "nobaseline", "raw", "medoid_derivative", "medoid_nobaseline",
+    "model_derivative", "model_nobaseline"),
   path = "system"
 )
 }
 \arguments{
 \item{type}{library type to check/retrieve; defaults to
-\code{c("derivative", "nobaseline", "raw", "mediod", "model")} which reads
+\code{c("derivative", "nobaseline", "raw", "medoid_derivative", "medoid_nobaseline", "model_derivative", "model_nobaseline")} which reads
 everything.}
 
 \item{path}{where to save or look for local library files; defaults to
@@ -31,19 +42,9 @@ everything.}
 \item{condition}{determines if \code{check_lib()} should warn
 (\code{"warning"}, the default) or throw and error (\code{"error"}).}
 
-\item{node}{the OSF node to be retrieved; should be \code{"x7dpz"} unless you
-maintain your own OSF node with spectral libraries.}
-
-\item{conflicts}{determines what happens when a file with the same name
-exists at the specified destination. Can be one of the following (see
-\code{\link[osfr]{osf_download}()} for details):
-\describe{
-\item{"error"}{throw an error and abort the file transfer operation.}
-\item{"skip"}{skip the conflicting file(s) and continue transferring the
-remaining files.}
-\item{"overwrite" (default)}{ replace the existing file with the
-transferred copy.}
-}}
+\item{revision}{revision number to use for libraries, revision numbers can be found
+at the osf repo (https://osf.io/x7dpz/) by clicking the library then history,
+if NULL defaults to most recent. This allows exact version control.}
 
 \item{\ldots}{further arguments passed to \code{\link[osfr]{osf_download}()}.}
 }
@@ -169,7 +170,7 @@ of large microplastics (L-MP, 500-5000 µm) in surface waters of the Weser
 estuary and the German North Sea.” \emph{PANGAEA}. \doi{10.1594/PANGAEA.938143}.
 
 “Handbook of Raman Spectra for geology” (2023).
-\url{http://www.geologie-lyon.fr/Raman/}.
+\url{https://www.geologie-lyon.fr/Raman/}.
 
 “Scientific Workgroup for the Analysis of Seized Drugs.” (2023).
 https://swgdrug.org/ir.htm.
